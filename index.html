@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clever Adventure – Das Lernspiel für Kinder von 4 bis 6</title>
+  <meta name="description" content="Clever Adventure: 21 kurze Lernspiele in einer App für Kinder von 4 bis 6 – werbefrei, offline und ohne Lesen spielbar. Bald bei Google Play.">
+  <meta name="theme-color" content="#03b0fd">
+  <meta property="og:title" content="Clever Adventure – bald bei Google Play">
+  <meta property="og:description" content="21 kurze Lernspiele für Kinder von 4 bis 6 – werbefrei, offline, ohne Lesen spielbar.">
+  <meta property="og:image" content="https://cleveradventure.de/img/og-image.jpg">
+  <meta property="og:url" content="https://cleveradventure.de/">
+  <link rel="alternate" hreflang="de" href="https://cleveradventure.de/">
+  <link rel="alternate" hreflang="hu" href="https://cleveradventure.de/hu/">
+  <link rel="alternate" hreflang="en" href="https://cleveradventure.de/en/">
+  <link rel="alternate" hreflang="x-default" href="https://cleveradventure.de/">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Nur beim ersten Besuch: ungarische Browser → /hu/, andere Nicht-Deutsch → /en/
+    (function () {
+      try {
+        if (sessionStorage.getItem("ca-lang-checked")) return;
+        sessionStorage.setItem("ca-lang-checked", "1");
+        if (document.referrer.indexOf(location.host) !== -1) return;
+        var l = (navigator.language || "de").slice(0, 2).toLowerCase();
+        if (l === "hu") location.replace("hu/");
+        else if (l !== "de") location.replace("en/");
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <i class="sparkle s1"></i><i class="sparkle s2"></i><i class="sparkle s3"></i><i class="sparkle s4"></i>
+  <i class="sparkle s5"></i><i class="sparkle s6"></i><i class="sparkle s7"></i>
+
+  <header>
+    <nav class="lang" aria-label="Sprache">
+      <a href="./" aria-current="page" lang="de">DE</a>
+      <a href="hu/" lang="hu">HU</a>
+      <a href="en/" lang="en">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <img class="mascot" src="img/mascot.webp" width="180" height="180" alt="Das Maskottchen von Clever Adventure: ein fröhlicher Stern mit Entdeckerhut und Rucksack">
+      <div class="logo"><span class="w1">Clever</span> <span class="w2">Adventure</span></div>
+      <p class="tagline">Das Lernspiel für Kinder von 4 bis 6</p>
+      <span class="badge">🚧 Im Aufbau</span>
+      <h1>Bald geht das Abenteuer los!</h1>
+      <p class="lead">21 kurze Lernspiele in einer App – zum Zählen, für Buchstaben, Logik und Gefühle. Alle Aufgaben werden vorgelesen, so können auch Kinder spielen, die noch nicht lesen können. Unsere Website entsteht gerade – bald findest du hier alle Infos und den Download bei Google Play.</p>
+      <ul class="areas">
+        <li><span class="ico">🔢</span> Zahlen &amp; Buchstaben</li>
+        <li><span class="ico">🧩</span> Logik &amp; Aufmerksamkeit</li>
+        <li><span class="ico">🌍</span> Welt &amp; Gefühle</li>
+        <li><span class="ico">🎨</span> Freies Spielen</li>
+      </ul>
+      <ul class="facts">
+        <li>✅ Werbefrei</li>
+        <li>📴 Funktioniert offline</li>
+        <li>🔒 Keine Datensammlung</li>
+        <li>👂 Ohne Lesen spielbar</li>
+        <li>⏰ Spielzeit einstellbar</li>
+        <li>📱 Handy &amp; Tablet</li>
+      </ul>
+      <div class="progress" aria-hidden="true"><span></span></div>
+      <p class="progress-label">Wir arbeiten daran …</p>
+      <p class="contact">Fragen? Schreib uns: <a href="mailto:info@cleveradventure.de">info@cleveradventure.de</a></p>
+    </section>
+  </main>
+
+  <footer>© 2026 Clever Adventure · <a href="impressum.html">Impressum</a></footer>
+</body>
+</html>

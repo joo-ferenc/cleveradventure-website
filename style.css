@@ -1,0 +1,161 @@
+/* Clever Adventure – "Coming soon" oldal
+   Színek a kabala képéből: ég-kék → lila háttér, csillag-sárga, kalap-zöld, hátizsák-narancs */
+:root {
+  --sky-top: #03b0fd;
+  --sky-mid: #6f9efb;
+  --sky-bottom: #b16ffa;
+  --ink: #2b2140;
+  --muted: #5b5370;
+  --star: #ffd21f;
+  --star-dark: #f5b800;
+  --outline: #7a3b12;
+  --hat: #6aa823;
+  --orange: #ff8a1f;
+  --purple: #8b5cf6;
+  --card: #ffffff;
+  --radius: 30px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-bottom) 100%) fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Csillogás a háttérben (mint a kabala képén) */
+.sparkle {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: var(--s, 28px); height: var(--s, 28px);
+  background: var(--c, #fff);
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.7));
+  animation: twinkle 3.5s ease-in-out infinite;
+}
+.sparkle.s1 { top: 8%;  left: 8%;  --s: 44px; }
+.sparkle.s2 { top: 16%; left: 16%; --s: 18px; animation-delay: -1s; }
+.sparkle.s3 { top: 12%; right: 10%; --s: 40px; --c: var(--star); animation-delay: -2s; }
+.sparkle.s4 { top: 20%; right: 6%;  --s: 24px; --c: var(--star); animation-delay: -.5s; }
+.sparkle.s5 { bottom: 16%; left: 7%;  --s: 30px; animation-delay: -1.6s; }
+.sparkle.s6 { bottom: 10%; right: 9%; --s: 36px; animation-delay: -2.6s; }
+.sparkle.s7 { bottom: 26%; right: 16%; --s: 16px; animation-delay: -.8s; }
+
+@keyframes twinkle { 0%,100% { transform: scale(1) rotate(0); opacity: 1; } 50% { transform: scale(.6) rotate(20deg); opacity: .55; } }
+@keyframes float   { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+
+/* Fejléc + nyelvválasztó */
+header {
+  position: relative; z-index: 2;
+  display: flex; justify-content: flex-end;
+  padding: 18px 22px;
+}
+.lang { display: flex; gap: 8px; }
+.lang a {
+  text-decoration: none; color: var(--ink); font-weight: 800; font-size: 15px;
+  background: rgba(255,255,255,.75); padding: 8px 14px; border-radius: 999px;
+  transition: transform .15s, background .15s;
+}
+.lang a:hover { transform: translateY(-2px); background: #fff; }
+.lang a[aria-current="page"] { background: var(--ink); color: #fff; }
+
+/* Fő kártya */
+main {
+  position: relative; z-index: 1;
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 70px 18px 40px;
+}
+.card {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 0 rgba(43,33,64,.10), 0 30px 70px rgba(43,33,64,.25);
+  max-width: 660px; width: 100%;
+  padding: 120px 34px 36px;
+  text-align: center;
+}
+.mascot {
+  position: absolute; left: 50%; top: -80px; translate: -50% 0;
+  width: 180px; height: 180px; border-radius: 42px;
+  border: 6px solid #fff;
+  box-shadow: 0 12px 30px rgba(43,33,64,.25);
+  animation: float 4s ease-in-out infinite;
+}
+.logo {
+  font-size: clamp(36px, 7.5vw, 56px);
+  font-weight: 900; letter-spacing: -.5px; line-height: 1.05;
+}
+.logo .w1 { color: var(--orange); }
+.logo .w2 { color: var(--purple); }
+.tagline { font-weight: 700; color: var(--hat); font-size: 17px; margin-top: 6px; }
+
+.badge {
+  display: inline-block; margin: 18px 0 20px;
+  background: var(--star); color: var(--outline);
+  box-shadow: 0 4px 0 var(--star-dark);
+  font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+  padding: 9px 18px; border-radius: 999px;
+}
+h1 { font-size: clamp(22px, 4.2vw, 30px); margin-bottom: 12px; }
+p.lead { font-size: 18px; line-height: 1.55; color: var(--muted); margin-bottom: 24px; }
+
+/* Négy terület */
+.areas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 22px; list-style: none; }
+.areas li {
+  font-weight: 800; font-size: 15px; padding: 14px 10px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.areas li:nth-child(1) { background: #fff4c7; }
+.areas li:nth-child(2) { background: #e2f3d0; }
+.areas li:nth-child(3) { background: #ffe4cc; }
+.areas li:nth-child(4) { background: #ece4ff; }
+.areas .ico { font-size: 22px; }
+
+/* Jellemzők */
+.facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 26px; list-style: none; }
+.facts li {
+  font-size: 14px; font-weight: 700; color: var(--ink);
+  border: 2px solid #ece8f5; border-radius: 999px; padding: 7px 12px;
+}
+
+.progress { background: #f0edf7; border-radius: 999px; height: 16px; overflow: hidden; margin: 0 auto 8px; max-width: 360px; }
+.progress span {
+  display: block; height: 100%; width: 70%;
+  background: repeating-linear-gradient(45deg, var(--star) 0 14px, var(--star-dark) 14px 28px);
+  background-size: 40px 40px;
+  border-radius: 999px; animation: stripes 1.2s linear infinite;
+}
+@keyframes stripes { from { background-position: 0 0; } to { background-position: 40px 0; } }
+.progress-label { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+
+.contact a { color: var(--purple); font-weight: 800; text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+
+footer {
+  position: relative; z-index: 1;
+  text-align: center; font-size: 14px; padding: 18px; color: #fff; font-weight: 600;
+}
+footer a { color: inherit; }
+
+/* Impresszum / jogi oldal */
+.legal { text-align: left; padding-top: 40px; }
+.legal h1 { text-align: center; margin-bottom: 22px; }
+.legal h2 { font-size: 18px; margin: 20px 0 6px; }
+.legal p { line-height: 1.6; color: var(--muted); }
+
+@media (max-width: 480px) {
+  main { padding-top: 60px; }
+  .card { padding: 100px 18px 30px; }
+  .mascot { width: 150px; height: 150px; top: -66px; border-radius: 36px; }
+  .areas li { font-size: 14px; padding: 12px 6px; }
+  .sparkle.s1, .sparkle.s2, .sparkle.s4, .sparkle.s7 { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}
